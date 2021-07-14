@@ -48,7 +48,7 @@ bool NTRIPClient::reqRaw(char* host,int &port,char* mntpnt,char* user,char* psw)
             );
     }
     else {
-        auth = base64::encode(String(user) + String(":") + psw);
+        auth = rbase64.encode(String(user) + String(":") + psw);
         #ifdef Debug
         Serial.println(String(user) + String(":") + psw);
         #endif

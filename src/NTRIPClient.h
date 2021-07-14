@@ -3,7 +3,7 @@
 
 #include <WiFiClient.h>
 #include <Arduino.h>
-#include<base64.h>
+#include<rBase64.h> // From https://github.com/boseji/rBASE64
 
 class NTRIPClient : public WiFiClient{
   public :

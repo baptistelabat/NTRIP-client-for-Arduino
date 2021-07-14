@@ -7,15 +7,16 @@
  * 
  */
 //#include <ESP8266WiFi.h>  //Need for ESP8266
-#include <WiFi.h>           //Need for ESP32 
+//#include <WiFi.h>           //Need for ESP32 
+#include <WiFiNINA.h>
 #include "NTRIPClient.h"
 
 const char* ssid     = "your_ssid";
 const char* password = "your_password";
 
-char* host = "ntrip caster host";
+char* host = "ntrip caster host";  // "rtk2go.com"
 int httpPort = 2101; //port 2101 is default port of NTRIP caster
-char* mntpnt = "ntrip caster's mountpoint";
+char* mntpnt = "ntrip caster's mountpoint"; // "AustinTexas"
 char* user   = "ntrip caster's client user";
 char* passwd = "ntrip caster's client password";
 NTRIPClient ntrip_c;
@@ -23,7 +24,7 @@ NTRIPClient ntrip_c;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  delay(10);
+  delay(2000); //Sufficient delay to see something
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
@@ -53,7 +54,7 @@ void setup() {
   Serial.println("Requesting MountPoint's Raw data");
   if(!ntrip_c.reqRaw(host,httpPort,mntpnt,user,passwd)){
     delay(15000);
-    ESP.restart();
+    //ESP.restart();
   }
   Serial.println("Requesting MountPoint is OK");
 
